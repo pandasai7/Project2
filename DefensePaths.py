@@ -49,3 +49,37 @@ def XSeams(step, numSeams, B, F = 1, radius = 1):
     xyz = Vec3(x, y, z)
    
     return xyz
+
+def YSeams(step, numSeams, B, F = 1, radius = 1):
+    time = step / float(numSeams) * 2 * math.pi
+
+    zzz = math.cos(time) - B * math.cos(3 * time)
+    xxx = math.sin(time) + B * math.sin(3 * time)
+    yyy = 0
+
+    #rrr = math.sqrt(xxx ** 2 + yyy ** 2 + zzz ** 2)
+    
+    x = radius * xxx 
+    y = radius * yyy 
+    z = radius * zzz 
+
+    xyz = Vec3(x, y, z)
+   
+    return xyz
+
+def ZSeams(step, numSeams, B, F = 1, radius = 1):
+    time = step / float(numSeams) * 2 * math.pi
+
+    yyy = math.cos(time) - B * math.cos(3 * time)
+    zzz = math.sin(time) + B * math.sin(3 * time)
+    xxx = 0
+
+    #rrr = math.sqrt(xxx ** 2 + yyy ** 2 + zzz ** 2)
+    
+    x = radius * xxx 
+    y = radius * yyy 
+    z = radius * zzz 
+
+    xyz = Vec3(x, y, z)
+   
+    return xyz

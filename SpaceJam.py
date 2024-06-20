@@ -45,6 +45,20 @@ def SetupScene(self):
         self.DroneObj = SpaceJamClasses.Drone(self.loader, "./Assets/DroneDefender/DroneDefender.obj", self.render, droneName, "./Assets/DroneDefender/octotoad1_auv.png", droneCoords, 5)
         i = i + 1
 
+    for i in range(200):
+        step = i
+        droneName = 'drone' + str(i)
+        droneCoords = DrawYSeams(self, self.Planet2, droneName, step, 150)
+        self.DroneObj = SpaceJamClasses.Drone(self.loader, "./Assets/DroneDefender/DroneDefender.obj", self.render, droneName, "./Assets/DroneDefender/octotoad1_auv.png", droneCoords, 5)
+        i = i + 1
+
+    for i in range(200):
+        step = i
+        droneName = 'drone' + str(i)
+        droneCoords = DrawZSeams(self, self.Planet2, droneName, step, 150)
+        self.DroneObj = SpaceJamClasses.Drone(self.loader, "./Assets/DroneDefender/DroneDefender.obj", self.render, droneName, "./Assets/DroneDefender/octotoad1_auv.png", droneCoords, 5)
+        i = i + 1
+
 
 def DrawBaseballSeams(self, centralObject, droneName, step, numSeams, radius = 4):
     unitVec = DefensePaths.BaseballSeams(step, numSeams, B = 0.4)
@@ -54,6 +68,18 @@ def DrawBaseballSeams(self, centralObject, droneName, step, numSeams, radius = 4
 
 def DrawXSeams(self, centralObject, droneName, step, numSeams, radius = 4):
     unitVec = DefensePaths.XSeams(step, numSeams, B = 0.4)
+    unitVec.normalize()
+    position = unitVec * radius * 250 + centralObject.modelNode.getPos()
+    return position
+
+def DrawYSeams(self, centralObject, droneName, step, numSeams, radius = 4):
+    unitVec = DefensePaths.YSeams(step, numSeams, B = 0.4)
+    unitVec.normalize()
+    position = unitVec * radius * 250 + centralObject.modelNode.getPos()
+    return position
+
+def DrawZSeams(self, centralObject, droneName, step, numSeams, radius = 4):
+    unitVec = DefensePaths.ZSeams(step, numSeams, B = 0.4)
     unitVec.normalize()
     position = unitVec * radius * 250 + centralObject.modelNode.getPos()
     return position
