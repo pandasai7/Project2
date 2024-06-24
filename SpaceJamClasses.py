@@ -1,10 +1,5 @@
 from direct.showbase.ShowBase import ShowBase
 from panda3d.core import *
-#
-#class MyApp(ShowBase):
-#    def __init__(self):
-#        ShowBase.__init__(self)
-#
 
 class Planet(ShowBase):
     def __init__(self, loader: Loader, modelPath: str, parentNode: NodePath, nodeName: str, texPath: str, posVec: Vec3, scaleVec: float):

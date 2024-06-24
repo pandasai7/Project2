@@ -2,7 +2,7 @@ import math, random
 from panda3d.core import *
 
 
-def Cloud(radius = 1):
+def DrawCloud(radius = 7):
     x = 2 * random.random() - 1 #creates random x
     y = 2 * random.random() - 1 #creates random y
     z = 2 * random.random() - 1 #creates random z

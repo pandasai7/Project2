@@ -9,10 +9,6 @@ class MyApp(ShowBase):
         ShowBase.__init__(self)
         
         SetupScene(self)
-        #self.DrawCloudDefense(self.Planet1, nickName)
-        #self.DrawBaseballSeams(self.SpaceStation1, nickName, j, fullCycle, 2)
-
-        
 
 def SetupScene(self):
 
@@ -27,78 +23,78 @@ def SetupScene(self):
     self.Planet5 = SpaceJamClasses.Planet(self.loader, "./Assets/Planets/protoPlanet.x", self.render, "Planet5", "./Assets/Planets/saturn.jpg",     (-14000,    100,    14000),     1000)
     self.Planet6 = SpaceJamClasses.Planet(self.loader, "./Assets/Planets/protoPlanet.x", self.render, "Planet6", "./Assets/Planets/shamrock.jpg",   (-21000,    1000,   7000),      1000)
 
-    self.SpaceStation1 = SpaceJamClasses.SpaceStation(self.loader, "./Assets/Space Station/SpaceStation1B/spaceStation.egg", self.render, "Space Station", "./Assets/Space Station/SpaceStation1B/SpaceStation1_Dif2.png", (0, 0, 0), 10000)
+    self.SpaceStation1 = SpaceJamClasses.SpaceStation(self.loader, "./Assets/Space Station/SpaceStation1B/spaceStation.egg", self.render, "Space Station", "./Assets/Space Station/SpaceStation1B/SpaceStation1_Dif2.png", (-2000, 10, -2000), 100)
 
     self.Hero = SpaceJamClasses.Player(self.loader, "./Assets/Dumbledore/Dumbledore.egg", self.render, "Player", "./Assets/Dumbledore/spacejet_C.png", (0, 0, 0), 100)
 
+    #Baseball Seams
     for i in range(100):
         step = i
         droneName = 'drone' + str(i)
         droneCoords = DrawBaseballSeams(self, self.Planet1, droneName, step, 50)
         self.DroneObj = SpaceJamClasses.Drone(self.loader, "./Assets/DroneDefender/DroneDefender.obj", self.render, droneName, "./Assets/DroneDefender/octotoad1_auv.png", droneCoords, 5)
         i = i + 1
-
-    for i in range(200):
+    #X
+    for i in range(150):
         step = i
         droneName = 'drone' + str(i)
         droneCoords = DrawXSeams(self, self.Planet2, droneName, step, 150)
         self.DroneObj = SpaceJamClasses.Drone(self.loader, "./Assets/DroneDefender/DroneDefender.obj", self.render, droneName, "./Assets/DroneDefender/octotoad1_auv.png", droneCoords, 5)
         i = i + 1
-
-    for i in range(200):
+    #Y
+    for i in range(150):
         step = i
         droneName = 'drone' + str(i)
-        droneCoords = DrawYSeams(self, self.Planet2, droneName, step, 150)
+        droneCoords = DrawYSeams(self, self.Planet3, droneName, step, 150)
+        self.DroneObj = SpaceJamClasses.Drone(self.loader, "./Assets/DroneDefender/DroneDefender.obj", self.render, droneName, "./Assets/DroneDefender/octotoad1_auv.png", droneCoords, 5)
+        i = i + 1
+    #Z
+    for i in range(150):
+        step = i
+        droneName = 'drone' + str(i)
+        droneCoords = DrawZSeams(self, self.Planet4, droneName, step, 150)
+        self.DroneObj = SpaceJamClasses.Drone(self.loader, "./Assets/DroneDefender/DroneDefender.obj", self.render, droneName, "./Assets/DroneDefender/octotoad1_auv.png", droneCoords, 5)
+        i = i + 1
+    #Cloud
+    for i in range(150):
+        step = i
+        droneName = 'drone' + str(i)
+        droneCoords = DrawCloudDefense(self, self.Planet5, droneName)
         self.DroneObj = SpaceJamClasses.Drone(self.loader, "./Assets/DroneDefender/DroneDefender.obj", self.render, droneName, "./Assets/DroneDefender/octotoad1_auv.png", droneCoords, 5)
         i = i + 1
 
-    for i in range(200):
-        step = i
-        droneName = 'drone' + str(i)
-        droneCoords = DrawZSeams(self, self.Planet2, droneName, step, 150)
-        self.DroneObj = SpaceJamClasses.Drone(self.loader, "./Assets/DroneDefender/DroneDefender.obj", self.render, droneName, "./Assets/DroneDefender/octotoad1_auv.png", droneCoords, 5)
-        i = i + 1
-
-
-def DrawBaseballSeams(self, centralObject, droneName, step, numSeams, radius = 4):
+def DrawBaseballSeams(self, centralObject, droneName, step, numSeams, radius = 4.1):
     unitVec = DefensePaths.BaseballSeams(step, numSeams, B = 0.4)
     unitVec.normalize()
     position = unitVec * radius * 250 + centralObject.modelNode.getPos()
     return position
 
-def DrawXSeams(self, centralObject, droneName, step, numSeams, radius = 4):
+def DrawXSeams(self, centralObject, droneName, step, numSeams, radius = 4.1):
     unitVec = DefensePaths.XSeams(step, numSeams, B = 0.4)
     unitVec.normalize()
     position = unitVec * radius * 250 + centralObject.modelNode.getPos()
     return position
 
-def DrawYSeams(self, centralObject, droneName, step, numSeams, radius = 4):
+def DrawYSeams(self, centralObject, droneName, step, numSeams, radius = 4.1):
     unitVec = DefensePaths.YSeams(step, numSeams, B = 0.4)
     unitVec.normalize()
     position = unitVec * radius * 250 + centralObject.modelNode.getPos()
     return position
 
-def DrawZSeams(self, centralObject, droneName, step, numSeams, radius = 4):
+def DrawZSeams(self, centralObject, droneName, step, numSeams, radius = 4.1):
     unitVec = DefensePaths.ZSeams(step, numSeams, B = 0.4)
     unitVec.normalize()
     position = unitVec * radius * 250 + centralObject.modelNode.getPos()
     return position
     
 def DrawCloudDefense(self, centralObject, droneName):
-    unitVec = DefensePaths.Cloud()
+    unitVec = DefensePaths.DrawCloud()
     unitVec.normalize()
-    position = unitVec * 500 + centralObject.modelNode.getPos()
+    position = unitVec * 1250 + centralObject.modelNode.getPos()
     SpaceJamClasses.Drone(self.loader, "./Assets/DroneDefender/DroneDefender.obj", self.render, droneName, "./Assets/DroneDefender/octotoad1_auv.png", position, 10)
-
-    fullCycle = 60
-
-    for j in range(fullCycle):
-        SpaceJamClasses.Drone.droneCount += 1
-        nickName = "Drone" + str(SpaceJamClasses.Drone.droneCount)
-    
-
-    #self.disableMouse
-
+    SpaceJamClasses.Drone.droneCount += 1
+    nickName = "Drone" + str(SpaceJamClasses.Drone.droneCount)
+    return position
 
 app = MyApp()
 app.run()
